@@ -25,19 +25,20 @@ end
 flag = 0;
 for m=1:length(varargin)
     if ~exist(varargin{m}, 'file');
-        fprintf(' Not exist in file ''%s''\n',varargin{m});
+        warning('Not exist input file ''%s''',varargin{m});
         flag = 1;
     end
 end
-[pathstr, name, ext] = fileparts(merged_file);
+pathstr = fileparts(merged_file);
 if isempty(pathstr)
     pathstr = './';
 end
 if ~isdir(pathstr)
-    fprintf(' Not exist out dir ''%s''\n', pathstr);
+    warning('Not exist output directory ''%s''', pathstr);
+    flag = 1;
 end
 if flag
-    fprintf('\n');
+    fprintf('<<Files were not merged.>>\n\n');
     return
 end
 
